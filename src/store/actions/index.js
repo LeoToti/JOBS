@@ -9,7 +9,7 @@ export const removeFromFav = (company) => ({
 })
 
 
-export const getJobs = () => {
+export const getJobs = (query) => {
     return async (dispatch, getState) => {
       // dispatch here is coming thanks to redux-thunk
       // fetch the books here!
@@ -20,7 +20,7 @@ export const getJobs = () => {
           type: 'SET_LOADING',
           payload: true,
         })
-        let resp = await fetch('https://remotive.io/api/remote-jobs?company_name=' + this.props.match.params.companyName)
+        let resp = await fetch('https://remotive.io/api/remote-jobs?company_name=' + query)
         console.log(getState())
         if (resp.ok) {
           let {jobs} = await resp.json()
